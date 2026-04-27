@@ -28,6 +28,12 @@ annotate service.Books with @(
                 Label : 'Price',
                 Value : Price,
             },
+            {
+                $Type : 'UI.DataField',
+                Value : Status_code,
+                Criticality : Status.criticality,
+                CriticalityRepresentation : #WithIcon,
+            },
         ],
     },
     UI.Facets : [
@@ -76,6 +82,20 @@ annotate service.Books with @(
             Label : 'Price',
             Value : Price,
         },
+        {
+            $Type : 'UI.DataField',
+            Value : Status_code,
+            Label : 'Status_code',
+            Criticality : Status.criticality,
+            CriticalityRepresentation : #WithIcon,
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : Stock,
+            Label : 'Stock',
+            Criticality : Status.criticality,
+            CriticalityRepresentation : #WithIcon,
+        },
     ],
     UI.FieldGroup #EntityInformation : {
         $Type : 'UI.FieldGroupType',
@@ -98,6 +118,15 @@ annotate service.Books with @(
             },
         ],
     },
+    UI.HeaderInfo : {
+        TypeImageUrl : 'sap-icon://education',
+        TypeName : 'Book',
+        TypeNamePlural : 'Books',
+    },
+    UI.SelectionFields : [
+        Price,
+        Status_code,
+    ],
 );
 
 annotate service.Books with {
@@ -142,4 +171,26 @@ annotate service.Chapters with @(
         },
     ]
 );
+
+annotate service.Books with {
+    Price @Common.Label : 'Price'
+};
+
+annotate service.Books with {
+    Status @(
+        Common.Label : 'Status_code',
+        Common.ValueList : {
+            $Type : 'Common.ValueListType',
+            CollectionPath : 'BookStatus',
+            Parameters : [
+                {
+                    $Type : 'Common.ValueListParameterInOut',
+                    LocalDataProperty : Status_code,
+                    ValueListProperty : 'code',
+                },
+            ],
+        },
+        Common.ValueListWithFixedValues : true,
+    )
+};
 
