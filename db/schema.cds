@@ -5,6 +5,10 @@ namespace BooksApp.db;
 entity Books : cuid,managed{
     Title : String;
     Author : Association to Authors;
+    Genre : String;
+    PublishedAt : Date;
+    Page : Integer;
+    Price : Decimal(9, 2);
     Chapters : Composition of many Chapters on Chapters.Book = $self;
 }
 
@@ -14,6 +18,9 @@ entity Authors : cuid,managed{
 }
 
 entity Chapters : cuid,managed{
-    Number : Integer;
     key Book : Association to Books;
+    Number : Integer;
+    Title : String;
+    Pages: Integer;
+    
 }
