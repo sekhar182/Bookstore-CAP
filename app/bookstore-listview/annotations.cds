@@ -32,7 +32,6 @@ annotate service.Books with @(
                 $Type : 'UI.DataField',
                 Value : Status_code,
                 Criticality : Status.criticality,
-                CriticalityRepresentation : #WithIcon,
             },
         ],
     },
@@ -122,6 +121,10 @@ annotate service.Books with @(
         TypeImageUrl : 'sap-icon://education',
         TypeName : 'Book',
         TypeNamePlural : 'Books',
+        Title : {
+            $Type : 'UI.DataField',
+            Value : ID,
+        },
     },
     UI.SelectionFields : [
         Price,

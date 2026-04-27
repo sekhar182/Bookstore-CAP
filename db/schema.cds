@@ -6,17 +6,19 @@ using {
 namespace BooksApp.db;
 
 entity Books : cuid, managed {
-    Title       : String;
-    Author      : Association to Authors;
-    Genre       : String;
-    PublishedAt : Date;
-    Page        : Integer;
-    Stock       : Integer;
-    Status      : Association to BookStatus;
-    Price       : Decimal(9, 2);
-    Chapters    : Composition of many Chapters
-                      on Chapters.Book = $self;
+    key ID          : UUID;
+        Title       : String;
+        Author      : Association to Authors;
+        Genre       : String;
+        PublishedAt : Date;
+        Page        : Integer;
+        Stock       : Integer;
+        Status      : Association to BookStatus;
+        Price       : Decimal(9, 2);
+        Chapters    : Composition of many Chapters
+                          on Chapters.Book = $self;
 }
+
 
 entity BookStatus {
     key code        : String(1) enum {
